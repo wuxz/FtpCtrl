@@ -1,0 +1,80 @@
+// Ftp.odl : type library source for ActiveX Control project.
+
+// This file will be processed by the Make Type Library (mktyplib) tool to
+// produce the type library (Ftp.tlb) that will become a resource in
+// Ftp.ocx.
+
+#include <olectl.h>
+#include <idispids.h>
+
+[ uuid(E9B4B1C2-EB75-11D2-A7FE-0080C8763FA4), version(1.0),
+  helpfile("Ftp.hlp"),
+  helpstring("Ftp ActiveX Control module"),
+  control ]
+library FTPLib
+{
+	importlib(STDOLE_TLB);
+	importlib(STDTYPE_TLB);
+
+	//  Primary dispatch interface for CFtpCtrl
+
+	[ uuid(E9B4B1C3-EB75-11D2-A7FE-0080C8763FA4),
+	  helpstring("Dispatch interface for Ftp Control"), hidden ]
+	dispinterface _DFtp
+	{
+		properties:
+			// NOTE - ClassWizard will maintain property information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_PROP(CFtpCtrl)
+			[id(1)] long ConnectTimeout;
+			[id(2)] long DataReceiveTimeOut;
+			[id(3)] long DataSendTimeout;
+			[id(4)] BSTR UserName;
+			[id(5)] BSTR Password;
+			[id(6)] BSTR HostName;
+			[id(7)] BSTR ErrorInfo;
+			//}}AFX_ODL_PROP
+
+		methods:
+			// NOTE - ClassWizard will maintain method information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_METHOD(CFtpCtrl)
+			[id(8)] boolean GetFile(BSTR strRemoteName, BSTR strLocalName);
+			[id(9)] boolean PutFile(BSTR sttrRemoteName, BSTR strLocalName);
+			[id(10)] boolean RemoveFile(BSTR strRemoteName);
+			[id(11)] BSTR FindFile(BSTR strFindName);
+			//}}AFX_ODL_METHOD
+
+			[id(DISPID_ABOUTBOX)] void AboutBox();
+	};
+
+	//  Event dispatch interface for CFtpCtrl
+
+	[ uuid(E9B4B1C4-EB75-11D2-A7FE-0080C8763FA4),
+	  helpstring("Event interface for Ftp Control") ]
+	dispinterface _DFtpEvents
+	{
+		properties:
+			//  Event interface has no properties
+
+		methods:
+			// NOTE - ClassWizard will maintain event information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_EVENT(CFtpCtrl)
+			//}}AFX_ODL_EVENT
+	};
+
+	//  Class information for CFtpCtrl
+
+	[ uuid(E9B4B1C5-EB75-11D2-A7FE-0080C8763FA4), licensed,
+	  helpstring("Ftp Control"), control ]
+	coclass Ftp
+	{
+		[default] dispinterface _DFtp;
+		[default, source] dispinterface _DFtpEvents;
+	};
+
+
+	//{{AFX_APPEND_ODL}}
+	//}}AFX_APPEND_ODL}}
+};
